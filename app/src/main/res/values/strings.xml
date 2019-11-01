@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">CCatch</string>
+    <string name="btn_throw_npe">throw a NullPointException</string>
+    <string name="btn_start_catch">start catch</string>
+    <string name="btn_stop_catch">stop catch</string>
+    <string name="intercepted_exception">intercepted exception : %s</string>
+    <string name="unIntercepted_exception">unIntercepted exception : %s</string>
+    <string name="dialog_title">Catch a err</string>
+    <string name="throw_custom_exception">throw a custom TestException</string>
+</resources>
