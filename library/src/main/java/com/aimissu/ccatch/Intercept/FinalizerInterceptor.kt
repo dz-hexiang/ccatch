@@ -23,7 +23,7 @@ class FinalizerInterceptor : Interceptor {
                     it.name.contains("FinalizerWatchdogDaemon")
                             || it.name.contains("FinalizerDaemon")
                 }
-                .apply { return true }
+                ?.apply { return true }
             return interceptor.intercept(interceptor)
 
 
