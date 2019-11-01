@@ -39,20 +39,15 @@ catch crash exeception ,repot log with no more crash
 i
 
 ```
-nterface ICrashHandler {
+interface ICrashHandler {
 
     /**
      * 上报拦截处理的异常
-     *
+     *//todo 在这里上报crash日志
      * @param thread
      * @param ex
      */
-    fun reportInterceptExceptionLog(
-        thread: Thread,
-        ex: Throwable,
-        handler: UncaughtExceptionHandler
-        //todo 在这里上报crash日志
-    )
+    fun reportInterceptExceptionLog(thread: Thread,ex: Throwable, handler: UncaughtExceptionHandler)
 
     /**
      * 上报没有拦截处理的异常
@@ -60,11 +55,7 @@ nterface ICrashHandler {
      * @param thread
      * @param ex
      */
-    fun reportUnInterceptExceptionLog(
-        thread: Thread,
-        ex: Throwable,
-        handler: UncaughtExceptionHandler
-    )
+    fun reportUnInterceptExceptionLog(thread: Thread, ex: Throwable, handler: UncaughtExceptionHandler)
 
     /**
      * 捕获异常处理之前
