@@ -19,8 +19,10 @@ class FinalizerInterceptor : Interceptor {
         MLog.info(Interceptor.TAG, "FinalizerInterceptor intercept")
         if (interceptor is RealInterceptor) {
             interceptor.thread?.takeIf { interceptor.throwable is TimeoutException }
-                ?.takeIf { it.name.contains("FinalizerWatchdogDaemon") }
-                ?.takeIf { it.name.contains("FinalizerDaemon") }
+                ?.takeIf {
+                    it.name.contains("FinalizerWatchdogDaemon")
+                            || it.name.contains("FinalizerDaemon")
+                }
                 .apply { return true }
             return interceptor.intercept(interceptor)
 

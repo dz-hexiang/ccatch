@@ -16,7 +16,7 @@ class MultiSimpleClassInterceptor private constructor(builder: Builder) : Interc
         if (interceptor is RealInterceptor) {
             interceptor.throwable?.let {
                 mExceptionClass?.takeIf { b -> b.contains(it.javaClass) }
-                    .apply {
+                    ?.apply {
                         MLog.info(
                             Interceptor.TAG,
                             "MultiSimpleClassInterceptor intercept class:" + it.javaClass

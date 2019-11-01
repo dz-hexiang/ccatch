@@ -12,7 +12,7 @@ class TestExceptionIntercept : Interceptor {
     override fun intercept(interceptor: Interceptor): Boolean {
         if (interceptor is RealInterceptor) {
             interceptor.throwable?.takeIf { throwable -> throwable is TestException }
-                .apply { return true }
+                ?.apply { return true }
             return interceptor.intercept(interceptor)
         }
         return false
