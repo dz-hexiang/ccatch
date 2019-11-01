@@ -73,6 +73,7 @@ class UncaughtExceptionHandler(private val mExceptionCatchBuilder: ExceptionCatc
     override fun uncaughtException(thread: Thread, ex: Throwable) {
         if (!isRealIntercept) {
             originalHandler?.uncaughtException(thread, ex)
+            return
         }
         preUncaughtException(thread, ex)
         if (intercept(thread, ex)) {
