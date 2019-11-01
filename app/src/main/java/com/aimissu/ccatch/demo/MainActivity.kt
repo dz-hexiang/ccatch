@@ -30,24 +30,24 @@ class MainActivity : AppCompatActivity() {
         btn_switch.setOnClickListener {
             if (!ExceptionCatch.instance.isRealIntercept) {
                 val builder = ExceptionCatchBuilder.Builder()
-                    .setCrashHandler(crashHandle)
+                    .setCrashHandler(crashHandle) //异常捕获回调
                     .setContext(it.context)
-                    .setLog(MyLog())
-                    .addInterceptor(FinalizerInterceptor())
-                    .addInterceptor(TestExceptionIntercept())
+                    .setLog(MyLog()) //打印日志
+                    .addInterceptor(FinalizerInterceptor()) //拦截特定异常
+                    .addInterceptor(TestExceptionIntercept()) //拦截自定义异常
                     .addInterceptor(
                         MultiSimpleClassInterceptor.Builder()
-                            .addExceptionClass(RemoteException::class.java)
-                            .addExceptionClass(ArrayIndexOutOfBoundsException::class.java)
-                            .addExceptionClass(NullPointerException::class.java)
+                            .addExceptionClass(RemoteException::class.java) //拦截RemoteException异常
+                            .addExceptionClass(ArrayIndexOutOfBoundsException::class.java) //拦截越界异常
+                            .addExceptionClass(NullPointerException::class.java) //拦截NPE
                             .addExceptionClass(ClassNotFoundException::class.java)
                             .addExceptionClass(IllegalArgumentException::class.java)
                             .build()
                     )
                     .build()
-                ExceptionCatch.instance.startCatch(builder)
+                ExceptionCatch.instance.startCatch(builder) //设置捕获
             } else {
-                ExceptionCatch.instance.stopCatch()
+                ExceptionCatch.instance.stopCatch() //取消
             }
 
             setSwitchText()
