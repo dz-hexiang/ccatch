@@ -4,7 +4,7 @@ catch crash exeception ,repot log with no more crash
 
 
 ##原理
-拦截未捕获异常回掉，重启主线程消息循环
+拦截未捕获异常回调，重启主线程消息循环
 
 ###使用
 ####捕获异常
