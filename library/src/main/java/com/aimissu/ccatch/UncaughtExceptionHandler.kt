@@ -71,6 +71,9 @@ class UncaughtExceptionHandler(private val mExceptionCatchBuilder: ExceptionCatc
      * @param ex
      */
     override fun uncaughtException(thread: Thread, ex: Throwable) {
+        if (!isRealIntercept) {
+            originalHandler?.uncaughtException(thread, ex)
+        }
         preUncaughtException(thread, ex)
         if (intercept(thread, ex)) {
             MLog.info(Interceptor.TAG, "uncaughtException start intercept")
@@ -87,7 +90,7 @@ class UncaughtExceptionHandler(private val mExceptionCatchBuilder: ExceptionCatc
         } else {
             reportUnInterceptExceptionLog(thread, ex)
             MLog.info(Interceptor.TAG, "uncaughtException call default uncaughtException")
-            originalHandler!!.uncaughtException(thread, ex)
+            originalHandler?.uncaughtException(thread, ex)
         }
     }
 
